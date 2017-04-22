@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.caitlin.crealchemy">
+
+    <application
+        android:name=".CurrentState"
+        android:allowBackup="true"
+        android:backupAgent=".@string/backup_agent"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar">
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="AEdPqrEAAAAIExuX7_PCQYsdaB6LO-RgGQ01IAf1LmEAxyATAw" />
+
+        <service
+            android:name=".InsertNewElementIntentService"
+            android:exported="false" />
+        <service
+            android:name=".FirstCreateIntentService"
+            android:exported="false" />
+        <service
+            android:name=".GetListIntentService"
+            android:exported="false" />
+        <service
+            android:name=".UpdateElementListIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/title_activity_game" />
+        <activity
+            android:name=".CreateActivity"
+            android:label="@string/title_activity_create" />
+        <activity
+            android:name=".CreateParentsActivity"
+            android:label="@string/title_activity_create_parents" />
+        <activity
+            android:name=".DeleteActivity"
+            android:label="@string/title_activity_delete" />
+
+        <service
+            android:name=".DeleteElementIntentService"
+            android:exported="false" />
+
+        <activity android:name=".AchievementActivity"></activity>
+    </application>
+
+</manifest>
