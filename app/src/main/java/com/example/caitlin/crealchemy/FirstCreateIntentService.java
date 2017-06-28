@@ -1,8 +1,9 @@
 package com.example.caitlin.crealchemy;
 
 import android.app.IntentService;
-import android.content.Intent;
 import android.app.backup.BackupManager;
+import android.content.Intent;
+
 import java.util.ArrayList;
 
 public class FirstCreateIntentService extends IntentService{
@@ -263,6 +264,7 @@ public class FirstCreateIntentService extends IntentService{
         helper.insertElement(squirrel);
         helper.insertElement(gravity);
         helper.insertElement(earthquake);
+
 
         requestBackup();
     }

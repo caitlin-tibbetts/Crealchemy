@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-    Button buttonPlay, buttonCreate, buttonDelete;
+    Button buttonPlay, buttonCreate, buttonDelete, buttonAchievements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
         buttonCreate = (Button)findViewById(R.id.buttonCreate);
         buttonDelete = (Button)findViewById(R.id.buttonDelete);
+        buttonAchievements = (Button) findViewById(R.id.buttonAchievements);
         //Setting onClickListeners to buttonPlay, buttonCreate
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 //Starts DeleteActivity
                 Intent intent = new Intent(getApplicationContext(), DeleteActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonAchievements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Starts AchievementActivity
+                Intent intent = new Intent(getApplicationContext(), AchievementActivity.class);
                 startActivity(intent);
             }
         });

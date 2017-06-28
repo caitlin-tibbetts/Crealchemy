@@ -46,4 +46,6 @@
     <string name="content_description_achievements">achievements</string>
     <string name="placeholdertext_element_name">elementName</string>
     <string name="content_description_achievement">achievement</string>
+    <string name="button_achievement">Achievements</string>
+    <string name="content_description_parents_title">Add Parents</string>
 </resources>

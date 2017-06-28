@@ -1,86 +1,104 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="@color/background">
+    tools:context=".MainActivity">
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/imageViewTItle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:contentDescription="@string/content_description_title"
+        android:src="@drawable/title" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/imageViewTItle"
+        android:layout_marginTop="-100dp"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="350dp"
-            android:layout_height="328dp"
-            android:id="@+id/imageViewTItle"
-            android:layout_gravity="center_horizontal|top"
-            android:src="@drawable/title"
-            android:contentDescription="@string/content_description_title" />
+        <Button
+            android:id="@+id/buttonPlay"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonDoneHeight"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/buttonBackground"
+            android:clickable="true"
+            android:text="@string/button_play"
+            android:textColor="#ff000000"
+            android:textSize="35sp" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="254dp"
-            android:layout_height="289dp"
-            android:layout_gravity="center_horizontal|bottom">
+        <Button
+            android:id="@+id/buttonCreate"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonDoneHeight"
+            android:layout_below="@+id/buttonPlay"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/buttonBackground"
+            android:clickable="true"
+            android:text="@string/button_create"
+            android:textColor="#ff000000"
+            android:textSize="35sp" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="201dp"
-                android:layout_height="53dp"
-                android:text="@string/button_play"
-                android:id="@+id/buttonPlay"
-                android:layout_gravity="center"
-                android:background="@color/buttonBackground"
-                android:textColor="#ff000000"
-                android:textSize="35sp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="5dp"
-                android:clickable="true" />
+        <Button
+            android:id="@+id/buttonAchievements"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonDoneHeight"
+            android:layout_below="@+id/buttonCreate"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/buttonBackground"
+            android:clickable="true"
+            android:text="@string/button_achievement"
+            android:textSize="35sp" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="201dp"
-                android:layout_height="53dp"
-                android:text="@string/button_create"
-                android:id="@+id/buttonCreate"
-                android:layout_gravity="center"
-                android:background="@color/buttonBackground"
-                android:textColor="#ff000000"
-                android:textSize="35sp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:clickable="true" />
+        <Button
+            android:id="@+id/buttonDelete"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonDoneHeight"
+            android:layout_below="@+id/buttonAchievements"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/buttonBackground"
+            android:clickable="true"
+            android:text="@string/button_delete"
+            android:textColor="#ff000000"
+            android:textSize="35sp" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="201dp"
-                android:layout_height="53dp"
-                android:text="@string/button_delete"
-                android:id="@+id/buttonDelete"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/buttonBackground"
-                android:textColor="#ff000000"
-                android:textSize="35sp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:clickable="true" />
+        <TextView
+            android:id="@+id/textViewCopyright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/buttonDelete"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="bottom|center_horizontal"
+            android:text="@string/copyright" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/copyright"
-                android:id="@+id/textView"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="90dp" />
+    </RelativeLayout>
 
-        </LinearLayout>
-
-    </FrameLayout>
 </RelativeLayout>
