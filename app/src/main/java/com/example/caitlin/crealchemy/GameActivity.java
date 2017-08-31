@@ -5,8 +5,9 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.annotation.RequiresApi;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Toast.makeText(getApplicationContext(), "Long click and drag the elements to the numbers to play.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Long-click and drag the elements to the numbers to play.", Toast.LENGTH_LONG).show();
         CurrentState senderGame = (CurrentState)getApplication();
         listAllElements = senderGame.getElementList();
         buttonDone = (Button)findViewById(R.id.buttonDone);
@@ -89,6 +90,13 @@ public class GameActivity extends Activity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_found_element, mes), Toast.LENGTH_SHORT).show();
+                    AchievementList curList = new AchievementList(listAllElements);
+                    CurrentState cur = (CurrentState)getApplication();
+                    AchievementList oldList = cur.getAchievementList();
+                    if(!oldList.equals(curList)){
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_new_achievement), Toast.LENGTH_SHORT).show();
+                    }
+                    cur.setAchievementList(curList);
                 } else
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_not_such_element), Toast.LENGTH_SHORT).show();
                 gameArrayAdapter.notifyDataSetChanged();
@@ -115,13 +123,14 @@ public class GameActivity extends Activity {
         gameArrayAdapter.notifyDataSetChanged();
 
         listViewFoundElements.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+             @RequiresApi(api = Build.VERSION_CODES.N)
              @Override
              public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                  Element selectedItem = (Element) (parent.getItemAtPosition(position));
                  ElementToPass passObj = new ElementToPass(selectedItem);
                  ClipData data = ClipData.newPlainText("", "");
                  View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                 view.startDrag(data, shadowBuilder, passObj, 0);
+                 view.startDragAndDrop(data, shadowBuilder, passObj, 0);
                  return false;
             }
         });
@@ -247,7 +256,7 @@ public class GameActivity extends Activity {
                 "drawable", context.getPackageName());
     }
 
-    class ElementToPass {
+    private class ElementToPass {
         Element element;
 
         ElementToPass(Element element){

@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 
 import java.util.ArrayList;
 
-public class AchievementList extends ArrayList<Achievement> {
-    ElementList list;
+class AchievementList extends ArrayList<Achievement> {
+    private ElementList list;
 
     @SuppressLint("DefaultLocale")
-    public AchievementList(ElementList list){
+    AchievementList(ElementList list){
         this.list = list;
         for(GroupType g : GroupType.values()){
             if(allElementsInGroupDiscovered(g)){
@@ -21,6 +21,13 @@ public class AchievementList extends ArrayList<Achievement> {
                 if(a == 1){
                     this.add(new Achievement("Created your first Element!", "firstElement"));
                 } else this.add(new Achievement(String.format("Created %1$d Elements", a), String.format("created_%1$d", a)));
+            }
+        }
+        for(int a : sequence){
+            if(a < numberOfElementsDiscovered()){
+                if(a == 1){
+                    this.add(new Achievement("Found your first Element!", "foundFirstElement"));
+                } else this.add(new Achievement(String.format("Found %1$d Elements", a), String.format("found_%1$d", a)));
             }
         }
         if(allElementsDiscovered()){
@@ -37,7 +44,7 @@ public class AchievementList extends ArrayList<Achievement> {
         return true;
     }
 
-    public boolean allElementsInGroupDiscovered(GroupType g){
+    private boolean allElementsInGroupDiscovered(GroupType g){
         for(Element e : list){
             if(e.getGroup().equals(g) && e.getIsFound() == 0){
                 return false;
@@ -46,12 +53,20 @@ public class AchievementList extends ArrayList<Achievement> {
         return true;
     }
 
-    public int numberOfElementsCreated(){
+    private int numberOfElementsCreated(){
         int ret = 0;
         for(Element e : list){
             if(e.getWasCreated() == 1){
                 ret++;
             }
+        }
+        return ret;
+    }
+
+    private int numberOfElementsDiscovered(){
+        int ret = 0;
+        for(Element e : list){
+            if(e.getIsFound() == 1) ret++;
         }
         return ret;
     }

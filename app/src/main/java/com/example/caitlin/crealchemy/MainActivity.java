@@ -9,20 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
     Button buttonPlay, buttonCreate, buttonDelete, buttonAchievements;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final String PREFS_NAME = "FirstTime";
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        if (settings.getBoolean("my_first_time", true)) {
-            Intent intent = new Intent(getApplicationContext(), FirstCreateIntentService.class);
-            startService(intent);
-            settings.edit().putBoolean("my_first_time", false).apply();
-        }
         Intent intent1 = new Intent(getApplicationContext(), GetListIntentService.class);
         startService(intent1);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
