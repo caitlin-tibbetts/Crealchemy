@@ -81,19 +81,20 @@ public class GameActivity extends Activity {
                     }
                 }
                 if (children.size() > 0) {
-                    String mes = "";
+                    StringBuilder build = new StringBuilder();
                     for (Element e2 : children) {
-                        mes += e2.getName() + " ";
+                        build.append(e2.getName());
+                        build.append(" ");
                         listAllElements.get(listAllElements.indexOf(e2)).setIsFound(true);
                         if (!listFoundElements.contains(e2)) {
                             listFoundElements.add(e2);
                         }
                     }
-                    Toast.makeText(getApplicationContext(), getString(R.string.toast_found_element, mes), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_found_element, build.toString()), Toast.LENGTH_SHORT).show();
                     AchievementList curList = new AchievementList(listAllElements);
                     CurrentState cur = (CurrentState)getApplication();
                     AchievementList oldList = cur.getAchievementList();
-                    if(!oldList.equals(curList)){
+                    if(oldList == null || !oldList.equals(curList)){
                         Toast.makeText(getApplicationContext(), getString(R.string.toast_new_achievement), Toast.LENGTH_SHORT).show();
                     }
                     cur.setAchievementList(curList);
@@ -112,11 +113,12 @@ public class GameActivity extends Activity {
         listViewFoundElements = (ListView)findViewById(R.id.listViewGameList);
         gameArrayAdapter = new ImageTextArrayAdapter(this, R.layout.vertical_image_text_list_item_0, listFoundElements);
         listViewFoundElements.setAdapter(gameArrayAdapter);
-
-        for(Element e : listAllElements){
-            if(e.getIsFound() == 1 || (e.getName().equals("Water") || e.getName().equals("Fire") || e.getName().equals("Earth") || e.getName().equals("Air"))){
-                if(!listFoundElements.contains(e)) {
-                    listFoundElements.add(e);
+        if(listAllElements != null && listAllElements.size() > 0){
+            for(Element e : listAllElements){
+                if(e.getIsFound() == 1 || (e.getName().equals("Water") || e.getName().equals("Fire") || e.getName().equals("Earth") || e.getName().equals("Air"))){
+                    if(!listFoundElements.contains(e)) {
+                        listFoundElements.add(e);
+                    }
                 }
             }
         }
@@ -130,7 +132,7 @@ public class GameActivity extends Activity {
                  ElementToPass passObj = new ElementToPass(selectedItem);
                  ClipData data = ClipData.newPlainText("", "");
                  View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                 view.startDragAndDrop(data, shadowBuilder, passObj, 0);
+                 view.startDrag(data, shadowBuilder, passObj, 0);
                  return false;
             }
         });
